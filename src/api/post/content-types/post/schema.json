@@ -8,7 +8,8 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true,
+    "populateCreatorFields": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -17,7 +18,7 @@
       "required": true
     },
     "datetime": {
-      "type": "datetime"
+      "type": "date"
     },
     "Boolean": {
       "type": "boolean",

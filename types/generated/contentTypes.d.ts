@@ -371,11 +371,12 @@ export interface ApiPostPost extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
+    populateCreatorFields: true;
   };
   attributes: {
     title: Attribute.Text & Attribute.Required;
-    datetime: Attribute.DateTime;
+    datetime: Attribute.Date;
     Boolean: Attribute.Boolean & Attribute.DefaultTo<false>;
     user: Attribute.Relation<
       'api::post.post',
@@ -384,10 +385,9 @@ export interface ApiPostPost extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'>;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'>;
   };
 }
 
@@ -751,6 +751,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::post.post'
     >;
+    fullname: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
